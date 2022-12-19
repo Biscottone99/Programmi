@@ -5,10 +5,10 @@ real*8,allocatable::sz0(:), sz1(:), fin(:), S(:), t(:)
 character*1,allocatable::state(:)
 
 
-open(1,file='eigenvalues_sz0.dat')
-open(2,file='eigenvalues_sz1.dat')
+open(1,file='eigenvalues_sz0_6.dat')
+open(2,file='eigenvalues_sz1_6.dat')
 open(3,file='stati.dat')
-open(7,file='tab.dat')
+!open(7,file='tab.dat')
 
  
 nev=30
@@ -56,12 +56,16 @@ close(5)
 open(4,file='aa.dat')
 open(5,file='bb.dat')
 do i=1,5
-   read(4,*) s(i)
+   !read(4,*) s(i)
    read(5,*) t(i)
   
 enddo
-
-write(7,*) s(2)-s(1), s(2)-t(1)
+do i=1,4
+   read(4,*) s(i)
+  ! read(5,*) t(i)
+  
+enddo
+write(3,*) 'S0-S1=',s(2)-s(1),'ST=', s(2)-t(1)
 !write(7,*) 'ST=', s(2)-t(1)
 close(3)
 end program
